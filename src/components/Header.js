@@ -7,10 +7,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Badge from "@mui/material/Badge";
 import { NavLink } from "react-router-dom";
 import cartImg from "../assets/cart.gif";
-import { useSelector } from "react-redux";
 import { Table } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { DELETE } from "../redux/actions/action";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
   // get value from state
   const getData = useSelector((state) => state.cartreducer.carts);
   console.log(getData);
@@ -20,8 +23,15 @@ const Header = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  // close cart dropdown menu
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  // Remove from cart
+  // get id from onClick and send to dispatch
+  const del = (id) => {
+    dispatch(DELETE(id));
   };
   return (
     <>
@@ -82,7 +92,7 @@ const Header = () => {
                       <>
                         <tr>
                           <td>
-                            <NavLink to={`/cart/${e.id}`}>
+                            <NavLink to={`/cart/${e.id}`} onClick={handleClose}>
                               <img
                                 src={e.imgdata}
                                 alt=""
@@ -100,6 +110,7 @@ const Header = () => {
                                 fontSize: 20,
                                 cursor: "pointer",
                               }}
+                              onClick={() => del(e.id)}
                             >
                               <i className="fas fa-trash smalltrash"></i>
                             </p>
@@ -112,7 +123,10 @@ const Header = () => {
                               cursor: "pointer",
                             }}
                           >
-                            <i className="fas fa-trash largetrash"></i>
+                            <i
+                              className="fas fa-trash largetrash"
+                              onClick={() => del(e.id)}
+                            ></i>
                           </td>
                         </tr>
                       </>

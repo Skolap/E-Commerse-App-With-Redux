@@ -1,8 +1,9 @@
 import { color } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { DELETE } from "../redux/actions/action";
 
 const CardDetails = () => {
   const [data, setData] = useState([]);
@@ -11,6 +12,10 @@ const CardDetails = () => {
   // get id from url
   const { id } = useParams();
   // console.log(id);
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const getdata = useSelector((state) => state.cartreducer.carts);
   // console.log(getdata);
@@ -22,6 +27,13 @@ const CardDetails = () => {
     });
     // console.log(compareData);
     setData(compareData);
+  };
+
+  // Delete from cart
+  // get id from onClick and send to dispatch
+  const del = (id) => {
+    dispatch(DELETE(id));
+    navigate("/");
   };
 
   // Load whenever id changes
@@ -86,6 +98,7 @@ const CardDetails = () => {
                                   fontSize: 20,
                                   cursor: "pointer",
                                 }}
+                                onClick={() => del(ele.id)}
                               ></i>
                             </span>
                           </p>
