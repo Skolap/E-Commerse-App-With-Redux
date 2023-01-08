@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -12,11 +12,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { DELETE } from "../redux/actions/action";
 
 const Header = () => {
-  const dispatch = useDispatch();
+  const [price, setPrice] = useState(0);
 
   // get value from state
   const getData = useSelector((state) => state.cartreducer.carts);
   console.log(getData);
+
+  const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -33,6 +35,19 @@ const Header = () => {
   const del = (id) => {
     dispatch(DELETE(id));
   };
+
+  // Function for get total price
+  const total = () => {
+    let price = 0;
+    getData.map((ele, k) => {
+      price = price + ele.price;
+    });
+    setPrice(price);
+  };
+
+  useEffect(() => {
+    total();
+  }, [total]);
   return (
     <>
       <Navbar bg="dark" variant="dark" style={{ height: "60px" }}>
@@ -132,7 +147,7 @@ const Header = () => {
                       </>
                     );
                   })}
-                  <p className="text-center">Total: ₹300</p>
+                  <p className="text-center">Total: ₹{price}</p>
                 </tbody>
               </Table>
             </div>
