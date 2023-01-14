@@ -16,7 +16,7 @@ const Header = () => {
 
   // get value from state
   const getData = useSelector((state) => state.cartreducer.carts);
-  console.log(getData);
+  // console.log(getData);
 
   const dispatch = useDispatch();
 
@@ -118,7 +118,7 @@ const Header = () => {
                           <td>
                             <p>{e.rname}</p>
                             <p>Price: ₹{e.price}</p>
-                            <p>Quantity: ₹{e.qnty}</p>
+                            <p>Quantity: {e.qnty}</p>
                             <p
                               style={{
                                 color: "red",

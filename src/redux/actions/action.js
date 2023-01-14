@@ -13,3 +13,11 @@ export const DELETE = (id) => {
     payload: id,
   };
 };
+
+// Remove Individual Item
+export const REMOVE = (item) => {
+  return {
+    type: "REMOVE_ONE",
+    payload: item,
+  };
+};

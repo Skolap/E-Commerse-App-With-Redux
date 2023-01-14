@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { DELETE } from "../redux/actions/action";
+import { ADD, DELETE, REMOVE } from "../redux/actions/action";
 
 const CardDetails = () => {
   const [data, setData] = useState([]);
@@ -29,11 +29,23 @@ const CardDetails = () => {
     setData(compareData);
   };
 
+  // Add data
+  const sendData = (e) => {
+    // console.log(e);
+    // send data to action
+    dispatch(ADD(e));
+  };
+
   // Delete from cart
   // get id from onClick and send to dispatch
   const del = (id) => {
     dispatch(DELETE(id));
     navigate("/");
+  };
+
+  // Remove one quantity from cart
+  const remove = (item) => {
+    dispatch(REMOVE(item));
   };
 
   // Load whenever id changes
@@ -69,6 +81,30 @@ const CardDetails = () => {
                           <p>
                             <strong>Total</strong> : ₹300
                           </p>
+
+                          <div
+                            className="mt-5 d-flex justify-content-between align-items-center"
+                            style={{
+                              width: 100,
+                              cursor: "pointer",
+                              background: "#ddd",
+                              color: "#111",
+                            }}
+                          >
+                            <span
+                              style={{ fontSize: 24 }}
+                              onClick={() => remove(ele)}
+                            >
+                              -
+                            </span>
+                            <span style={{ fontSize: 22 }}>{ele.qnty}</span>
+                            <span
+                              style={{ fontSize: 24 }}
+                              onClick={() => sendData(ele)}
+                            >
+                              +
+                            </span>
+                          </div>
                         </td>
                         <td>
                           <p>
