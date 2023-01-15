@@ -50,16 +50,30 @@ const Header = () => {
   }, [total]);
   return (
     <>
-      <Navbar bg="dark" variant="dark" style={{ height: "60px" }}>
+      <Navbar
+        bg="dark"
+        variant="dark"
+        style={{
+          height: "60px",
+          position: "fixed",
+          top: 0,
+          width: "100%",
+          zIndex: "1",
+        }}
+      >
         <Container>
-          <NavLink to="/" className="text-decoration-none text-light mx-3">
-            E-Commerce Cart
+          <NavLink
+            to="/"
+            className="text-decoration-none text-light mx-3"
+            style={{ fontSize: 20, fontWeight: "bold" }}
+          >
+            Foodie Cart
           </NavLink>
-          <Nav className="me-auto">
+          {/* <Nav className="me-auto">
             <NavLink to="/" className="text-decoration-none text-light">
               Home
             </NavLink>
-          </Nav>
+          </Nav> */}
           <Badge
             // getData.length shows number of items in cart
             badgeContent={getData.length}
