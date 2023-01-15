@@ -40,7 +40,7 @@ const Header = () => {
   const total = () => {
     let price = 0;
     getData.map((ele, k) => {
-      price = price + ele.price;
+      price = price + ele.price * ele.qnty;
     });
     setPrice(price);
   };
