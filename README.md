@@ -2,20 +2,25 @@
 
 This project shows cart implementation for online food delivery app using react, redux, bootstarp and material-ui
 
+## Demo
+
+https://foodie-cart-skolap.web.app/
+
 ## Getting Started
 
 - clone repo
 - `npm install`
 - `npm start`
 
-## Built With
+## Tech Stack
 
-- React
-- Redux
-- Bootstarp
-- Material Ui
-- React Router
-- Font Awesome
+React, Redux, Bootstarp, Material Ui, React Router, Font Awesome
+
+## Features
+
+- Add to cart
+- Remove from Cart
+- Increase / Decrease quantity
 
 ## Authors
 
