@@ -8,7 +8,7 @@ https://foodie-cart-skolap.web.app/
 
 ## Tech Stack
 
-React, Redux, React BootStarp, Material Ui, React Router, Font Awesome
+React, Redux, React Bootstarp, Material Ui, React Router, Font Awesome, Firebase Hosting
 
 ## Features
 
